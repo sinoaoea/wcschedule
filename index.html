@@ -1,91 +1,142 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026世界杯赛程日历订阅</title>
+    <title>2026世界杯赛程订阅 | WCS</title>
     <style>
-        body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; background-color: #f4f4f4; color: #374151; margin: 0; padding: 20px; }
-        h1 { color: #201f1c; font-size: 28px; font-weight: 700; text-align: center; margin: 40px 0 20px 0; }
-        .notice-box { background-color: #ffffff; border: 1px solid #afafaf; padding: 15px 20px; border-radius: 8px; margin: 20px auto; max-width: 800px; font-size: 14px; line-height: 1.6; }
-        .link-container { background-color: #FFFFFF; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.05); max-width: 800px; margin: 20px auto; padding: 20px; }
-        .subscription-item { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
-        .subscription-item a { color: #737373; text-decoration: none; font-weight: 400; word-break: break-all; font-size: 13px; }
-        .subscription-item a:hover { color: #d15a56; text-decoration: underline; }
-        .copy-btn { background-color: #151515d9; color: #FFFFFF; border: none; padding: 6px 14px; border-radius: 6px; font-size: 14px; cursor: pointer; flex-shrink: 0; margin-left: 15px; transition: background 0.2s; }
-        .copy-btn:hover { background-color: #d15a56; }
-        .team-name { font-weight: 600; color: #d15a56; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
-        .subscription-item + .subscription-item { border-top: 1px solid #E5E7EB; padding-top: 16px; }
-        .footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #E5E7EB; font-size: 14px; color: #9ca3af; }
-        .footer a { color: #737373; text-decoration: none; margin: 0 10px; }
-        @media (max-width: 600px) { .subscription-item { flex-direction: column; align-items: flex-start; } .copy-btn { margin-top: 8px; width: 100%; margin-left: 0; } }
+        :root { --primary: #d15a56; --dark: #1a1a1a; --gray: #737373; --bg: #f8f9fa; }
+        body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background-color: var(--bg); color: #333; margin: 0; padding: 20px; line-height: 1.5; }
+        .container { max-width: 800px; margin: 0 auto; }
+        header { text-align: center; padding: 40px 0; }
+        h1 { font-size: 32px; color: var(--dark); margin: 0; }
+        .subtitle { color: var(--gray); margin-top: 10px; }
+
+        .notice-box { background: #fff; border-left: 4px solid var(--primary); padding: 15px 20px; border-radius: 4px; margin-bottom: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); font-size: 14px; }
+        
+        .group-title { font-size: 18px; font-weight: 700; color: var(--dark); margin: 30px 0 15px 10px; display: flex; align-items: center; }
+        .group-title::before { content: ""; display: inline-block; width: 4px; height: 18px; background: var(--primary); margin-right: 10px; border-radius: 2px; }
+        .group-desc { font-size: 13px; color: var(--gray); font-weight: normal; margin-left: 10px; }
+
+        .link-card { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); overflow: hidden; }
+        .sub-item { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid #eee; }
+        .sub-item:last-child { border-bottom: none; }
+        .team-info { display: flex; flex-direction: column; }
+        .team-name { font-weight: 600; font-size: 16px; margin-bottom: 4px; }
+        .team-url { font-size: 12px; color: var(--gray); text-decoration: none; }
+        
+        .copy-btn { background: var(--dark); color: #fff; border: none; padding: 8px 16px; border-radius: 6px; font-size: 13px; cursor: pointer; transition: 0.2s; white-space: nowrap; }
+        .copy-btn:hover { background: var(--primary); }
+
+        .footer { text-align: center; margin-top: 50px; padding: 30px 0; border-top: 1px solid #eee; color: var(--gray); font-size: 13px; }
+        .footer a { color: var(--gray); text-decoration: none; margin: 0 10px; }
+        
+        @media (max-width: 600px) {
+            .sub-item { flex-direction: column; align-items: flex-start; }
+            .copy-btn { margin-top: 12px; width: 100%; }
+            .group-title { flex-direction: column; align-items: flex-start; }
+            .group-desc { margin-left: 0; margin-top: 4px; }
+        }
     </style>
 </head>
 <body>
-    <h1>⚽️ 2026 世界杯赛程订阅</h1>
-    <div class="notice-box">
-        💡 <b>订阅方法：</b>建议<b>点击“复制链接”</b>，然后在手机日历应用中选择“添加订阅日历/添加网络日历”，粘贴链接即可。这样当比分更新或赛程调整时，你的日历会自动同步。
-    </div>
-    <div class="link-container" id="links">
+    <div class="container">
+        <header>
+            <h1>⚽️ 2026 世界杯赛程订阅</h1>
+            <p class="subtitle">全自动同步赛程与比分到您的手机日历</p>
+        </header>
+
+        <div class="notice-box">
+            <b>快速上手：</b> 复制下方链接 → 打开手机日历 → 添加订阅日历 → 粘贴链接。建议按需订阅，全量赛程项目较多。
         </div>
-    <div class="footer">
-        <a href="https://miying.tv" target="_blank">🎬 觅影(MiyingTV)</a>
-        <a href="https://sc.qing.day" target="_blank">⚽️ 苏超赛程</a>
-        <p>© 2026 wcs.qing.day | 世界杯球迷社区</p>
+
+        <div id="content"></div>
+
+        <div class="footer">
+            <p>
+                <a href="https://miying.tv" target="_blank">🎬 觅影(MiyingTV)</a> | 
+                <a href="https://sc.qing.day" target="_blank">⚽️ 苏超赛程</a>
+            </p>
+            <p>© 2026 wcs.qing.day | 基于开源数据驱动</p>
+        </div>
     </div>
 
     <script>
         const DOMAIN = "https://wcs.qing.day";
-        // 增加了国旗图标显示
-        const TEAMS = [
-            { p: 'all', n: '🏆 世界杯全赛程', k: '' },
-            { p: 'argentina', n: '🇦🇷 阿根廷', k: '阿根廷' },
-            { p: 'portugal', n: '🇵🇹 葡萄牙', k: '葡萄牙' },
-            { p: 'brazil', n: '🇧🇷 巴西', k: '巴西' },
-            { p: 'france', n: '🇫🇷 法国', k: '法国' },
-            { p: 'england', n: '🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格兰', k: '英格兰' },
-            { p: 'germany', n: '🇩🇪 德国', k: '德国' },
-            { p: 'spain', n: '🇪🇸 西班牙', k: '西班牙' },
-            { p: 'netherlands', n: '🇳🇱 荷兰', k: '荷兰' },
-            { p: 'croatia', n: '🇭🇷 克罗地亚', k: '克罗地亚' },
-            { p: 'italy', n: '🇮🇹 意大利', k: '意大利' },
-            { p: 'japan', n: '🇯🇵 日本', k: '日本' },
-            { p: 'southkorea', n: '🇰🇷 韩国', k: '韩国' },
-            { p: 'saudiarabia', n: '🇸🇦 沙特阿拉伯', k: '沙特阿拉伯' },
-            { p: 'morocco', n: '🇲🇦 摩洛哥', k: '摩洛哥' },
-            { p: 'usa', n: '🇺🇸 美国', k: '美国' },
-            { p: 'norway', n: '🇳🇴 挪威', k: '挪威' }
+        const GROUPS = [
+            {
+                title: "全量覆盖",
+                desc: "适合重度硬核球迷，掌握每一场哨响",
+                teams: [{ p: 'all', n: '🏆 2026世界杯全赛程' }]
+            },
+            {
+                title: "顶流幻神",
+                desc: "流量与实力的天花板，巨星谢幕与巅峰集结",
+                teams: [
+                    { p: 'argentina', n: '🇦🇷 阿根廷' },
+                    { p: 'portugal', n: '🇵🇹 葡萄牙' },
+                    { p: 'brazil', n: '🇧🇷 巴西' },
+                    { p: 'france', n: '🇫🇷 法国' },
+                    { p: 'england', n: '🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格兰' }
+                ]
+            },
+            {
+                title: "欧陆豪门",
+                desc: "传统的战术中心，硬核球迷的审美高地",
+                teams: [
+                    { p: 'germany', n: '🇩🇪 德国' },
+                    { p: 'spain', n: '🇪🇸 西班牙' },
+                    { p: 'netherlands', n: '🇳🇱 荷兰' },
+                    { p: 'croatia', n: '🇭🇷 克罗地亚' },
+                    { p: 'italy', n: '🇮🇹 意大利' }
+                ]
+            },
+            {
+                title: "亚洲之光",
+                desc: "邻国博弈与亚洲足球上限的观察哨",
+                teams: [
+                    { p: 'japan', n: '🇯🇵 日本' },
+                    { p: 'southkorea', n: '🇰🇷 韩国' },
+                    { p: 'saudiarabia', n: '🇸🇦 沙特阿拉伯' }
+                ]
+            },
+            {
+                title: "黑马新势力",
+                desc: "包含东道主与超级个体，充满变数",
+                teams: [
+                    { p: 'morocco', n: '🇲🇦 摩洛哥' },
+                    { p: 'usa', n: '🇺🇸 美国' },
+                    { p: 'norway', n: '🇳🇴 挪威' }
+                ]
+            }
         ];
-        
-        const container = document.getElementById('links');
-        
-        // 核心修复：将之前的 cities.map 改为 TEAMS.map
-        container.innerHTML = TEAMS.map(c => `
-            <div class="subscription-item">
-                <div>
-                    <span class="team-name">${c.n}</span>
-                    <a href="${DOMAIN}/${c.p}" target="_blank">${DOMAIN}/${c.p}</a>
-                </div>
-                <button class="copy-btn" onclick="copyText('${DOMAIN}/${c.p}')">复制链接</button>
+
+        const content = document.getElementById('content');
+        content.innerHTML = GROUPS.map(group => `
+            <div class="group-title">
+                ${group.title} <span class="group-desc">${group.desc}</span>
+            </div>
+            <div class="link-card">
+                ${group.teams.map(t => `
+                    <div class="sub-item">
+                        <div class="team-info">
+                            <span class="team-name">${t.n}</span>
+                            <a class="team-url" href="${DOMAIN}/${t.p}">${DOMAIN}/${t.p}</a>
+                        </div>
+                        <button class="copy-btn" onclick="copyText('${DOMAIN}/${t.p}')">复制链接</button>
+                    </div>
+                `).join('')}
             </div>
         `).join('');
 
         function copyText(text) {
-            // 兼容性更好的复制方法
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(text).then(() => {
-                    alert('订阅链接已复制！\n请前往手机日历，通过“添加订阅日历”粘贴此链接。');
-                });
-            } else {
-                // 备用方案
-                const textArea = document.createElement("textarea");
-                textArea.value = text;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-                alert('订阅链接已复制！');
-            }
+            const input = document.createElement('textarea');
+            input.value = text;
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand('copy');
+            document.body.removeChild(input);
+            alert('订阅链接已复制！\n请前往手机日历通过“URL订阅”添加。');
         }
     </script>
 </body>
